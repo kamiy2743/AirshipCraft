@@ -11,12 +11,12 @@ namespace BlockSystem
 
         private Block[] blocks = new Block[SIZE * SIZE * HEIGHT];
 
-        private Block GetBlock(LocalCoordinate coordinate)
+        public Block GetBlock(LocalCoordinate coordinate)
         {
             return blocks[coordinate.ToIndex()];
         }
 
-        private void SetBlock(LocalCoordinate coordinate, Block block)
+        public void SetBlock(LocalCoordinate coordinate, Block block)
         {
             blocks[coordinate.ToIndex()] = block;
         }
