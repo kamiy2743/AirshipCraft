@@ -26,5 +26,43 @@ namespace BlockSystem
         {
             return x + (z * World.CHUNK_SIZE) + (y * World.CHUNK_SIZE * World.CHUNK_SIZE);
         }
+
+        public override string ToString()
+        {
+            return $"ChunkCoordinate({x}, {y}, {z})";
+        }
+
+        public override bool Equals(object obj) => this.Equals(obj as ChunkCoordinate);
+
+        public bool Equals(ChunkCoordinate other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            // Optimization for a common success case.
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            // If run-time types are not exactly the same, return false.
+            if (this.GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            if (this.x != other.x) return false;
+            if (this.y != other.y) return false;
+            if (this.z != other.z) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

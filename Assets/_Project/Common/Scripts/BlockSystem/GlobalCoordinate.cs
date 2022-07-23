@@ -34,5 +34,48 @@ namespace BlockSystem
                 y - (chunkCoordinate.y * Chunk.SIZE),
                 z - (chunkCoordinate.z * Chunk.SIZE));
         }
+
+        public static GlobalCoordinate FromVector3(Vector3 vec)
+        {
+            return new GlobalCoordinate((int)vec.x, (int)vec.y, (int)vec.z);
+        }
+
+        public override string ToString()
+        {
+            return $"GlobalCoordinate({x}, {y}, {z})";
+        }
+
+        public override bool Equals(object obj) => this.Equals(obj as GlobalCoordinate);
+
+        public bool Equals(GlobalCoordinate other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            // Optimization for a common success case.
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            // If run-time types are not exactly the same, return false.
+            if (this.GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            if (this.x != other.x) return false;
+            if (this.y != other.y) return false;
+            if (this.z != other.z) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
