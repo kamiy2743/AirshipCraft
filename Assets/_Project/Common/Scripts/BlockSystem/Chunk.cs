@@ -7,18 +7,40 @@ namespace BlockSystem
     public class Chunk
     {
         public const int SIZE = 16;
-        public const int HEIGHT = 64;
 
-        private Block[] blocks = new Block[SIZE * SIZE * HEIGHT];
+        private Block[] blocks = new Block[SIZE * SIZE * SIZE];
 
-        public Block GetBlock(LocalCoordinate coordinate)
+        public Chunk()
         {
-            return blocks[coordinate.ToIndex()];
+            BlockIterator((x, y, z) =>
+            {
+                SetBlock(new LocalCoordinate(x, y, z), Block.Empty);
+            });
         }
 
-        public void SetBlock(LocalCoordinate coordinate, Block block)
+        public Block GetBlock(LocalCoordinate lc)
         {
-            blocks[coordinate.ToIndex()] = block;
+            return blocks[lc.ToIndex()];
+        }
+
+        public void SetBlock(LocalCoordinate lc, Block block)
+        {
+            blocks[lc.ToIndex()] = block;
+        }
+
+        public void BlockIterator(
+            System.Action<int, int, int> action,
+            int xs = 0,
+            int xe = SIZE,
+            int ys = 0,
+            int ye = SIZE,
+            int zs = 0,
+            int ze = SIZE)
+        {
+            for (int y = ys; y < ye; y++)
+                for (int z = zs; z < ze; z++)
+                    for (int x = xs; x < xe; x++)
+                        action(x, y, z);
         }
     }
 }

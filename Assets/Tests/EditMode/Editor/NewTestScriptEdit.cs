@@ -27,7 +27,7 @@ public class NewTestScriptEdit
         {
             for (int z = 0; z < Chunk.SIZE; z++)
             {
-                for (int y = 0; y < Chunk.HEIGHT; y++)
+                for (int y = 0; y < Chunk.SIZE; y++)
                 {
                     var block = chunk.GetBlock(new LocalCoordinate(x, y, z));
                 }

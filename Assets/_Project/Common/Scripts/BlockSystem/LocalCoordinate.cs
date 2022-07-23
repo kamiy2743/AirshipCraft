@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BlockSystem
 {
+    // チャンク内のブロックの座標
     public class LocalCoordinate
     {
         public readonly int x;
@@ -13,7 +14,7 @@ namespace BlockSystem
         public LocalCoordinate(int x, int y, int z)
         {
             if (x < 0 || x >= Chunk.SIZE) throw new System.Exception("x座標が不正です: " + x);
-            if (y < 0 || y >= Chunk.HEIGHT) throw new System.Exception("y座標が不正です: " + y);
+            if (y < 0 || y >= Chunk.SIZE) throw new System.Exception("y座標が不正です: " + y);
             if (z < 0 || z >= Chunk.SIZE) throw new System.Exception("z座標が不正です: " + z);
 
             this.x = x;
