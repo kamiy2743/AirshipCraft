@@ -8,9 +8,9 @@ namespace Application
     public class EntryPoint
     {
         [RuntimeInitializeOnLoadMethod]
-        private void Entry()
+        private static void Entry()
         {
-            MeshUpdateSystem.Instance.UpdateStart();
+
         }
     }
 }

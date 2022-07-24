@@ -22,6 +22,21 @@ namespace BlockSystem
             this.z = z;
         }
 
+        public static bool TryValidationCheck(int x, int y, int z, out ChunkCoordinate chunkCoordinate)
+        {
+            try
+            {
+                chunkCoordinate = new ChunkCoordinate(x, y, z);
+                return true;
+            }
+            catch (System.Exception)
+            {
+                chunkCoordinate = default;
+                return false;
+            }
+        }
+
+
         public int ToIndex()
         {
             return x + (z * World.CHUNK_SIZE) + (y * World.CHUNK_SIZE * World.CHUNK_SIZE);
